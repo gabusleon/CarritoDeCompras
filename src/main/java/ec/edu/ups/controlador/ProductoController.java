@@ -11,27 +11,42 @@ import java.util.List;
 
 public class ProductoController {
 
-    private final ProductoAnadirView productoAnadirView;
-    private final ProductoListaView productoListaView;
+    private ProductoAnadirView productoAnadirView;
+    private ProductoListaView productoListaView;
     private final ProductoDAO productoDAO;
 
-    public ProductoController(ProductoDAO productoDAO,
-                              ProductoAnadirView productoAnadirView,
-                              ProductoListaView productoListaView) {
+    public ProductoController(ProductoDAO productoDAO) {
         this.productoDAO = productoDAO;
-        this.productoAnadirView = productoAnadirView;
-        this.productoListaView = productoListaView;
-        configurarEventos();
     }
 
-    private void configurarEventos() {
+    public ProductoAnadirView getProductoAnadirView() {
+        return productoAnadirView;
+    }
+
+    public void setProductoAnadirView(ProductoAnadirView productoAnadirView) {
+        this.productoAnadirView = productoAnadirView;
+        this.configurarAnadirEventos();
+    }
+
+    public ProductoListaView getProductoListaView() {
+        return productoListaView;
+    }
+
+    public void setProductoListaView(ProductoListaView productoListaView) {
+        this.productoListaView = productoListaView;
+        this.configurarListaEventos();
+    }
+
+    private void configurarAnadirEventos() {
         productoAnadirView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 guardarProducto();
             }
         });
+    }
 
+    private void configurarListaEventos() {
         productoListaView.getBtnBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

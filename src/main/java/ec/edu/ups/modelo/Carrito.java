@@ -1,15 +1,37 @@
 package ec.edu.ups.modelo;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
 public class Carrito {
 
+    private int codigo;
+
+    private GregorianCalendar fechaCreacion;
+
     private List<ItemCarrito> items;
 
     public Carrito() {
         items = new ArrayList<>();
+        fechaCreacion = new GregorianCalendar();
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public GregorianCalendar getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(GregorianCalendar fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public void agregarProducto(Producto producto, int cantidad) {

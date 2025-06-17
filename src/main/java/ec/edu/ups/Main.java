@@ -1,8 +1,12 @@
-package ec.edu.ups.vista;
+package ec.edu.ups;
 
 import ec.edu.ups.controlador.ProductoController;
 import ec.edu.ups.dao.ProductoDAO;
 import ec.edu.ups.dao.impl.ProductoDAOMemoria;
+import ec.edu.ups.vista.CarritoAnadirView;
+import ec.edu.ups.vista.MenuPrincipalView;
+import ec.edu.ups.vista.ProductoAnadirView;
+import ec.edu.ups.vista.ProductoListaView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,18 +16,19 @@ public class Main {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                PrincipalView principalView = new PrincipalView();
+                //instanciamos DAO (Singleton)
                 ProductoDAO productoDAO = new ProductoDAOMemoria();
 
-                //instancio vistas
+                //instancio Vistas
+                MenuPrincipalView principalView = new MenuPrincipalView();
                 ProductoAnadirView productoAnadirView = new ProductoAnadirView();
                 ProductoListaView productoListaView = new ProductoListaView();
+                CarritoAnadirView carritoAnadirView = new CarritoAnadirView();
 
-                ProductoController productoController = new ProductoController(productoDAO);
-                // añadir producto
-                productoController.setProductoAnadirView(productoAnadirView);
-                //listar producto
-                productoController.setProductoListaView(productoListaView);
+
+                //instanciamos Controladores
+                ProductoController productoController = new ProductoController(productoDAO,
+                        productoAnadirView, productoListaView, carritoAnadirView);
 
                 principalView.getMenuItemCrearProducto().addActionListener(new ActionListener() {
                     @Override
@@ -41,6 +46,16 @@ public class Main {
                         if(!productoListaView.isVisible()){
                             productoListaView.setVisible(true);
                             principalView.getjDesktopPane().add(productoListaView);
+                        }
+                    }
+                });
+
+                principalView.getMenuItemCrearCarrito().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(!carritoAnadirView.isVisible()){
+                            carritoAnadirView.setVisible(true);
+                            principalView.getjDesktopPane().add(carritoAnadirView);
                         }
                     }
                 });

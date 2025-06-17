@@ -1,33 +1,45 @@
 package ec.edu.ups.vista;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class PrincipalView extends JFrame {
+public class MenuPrincipalView extends JFrame {
     private JMenuBar menuBar;
+
     private JMenu menuProducto;
+    private JMenu menuCarrito;
+
     private JMenuItem menuItemCrearProducto;
     private JMenuItem menuItemEliminarProducto;
     private JMenuItem menuItemActualizarProducto;
     private JMenuItem menuItemBuscarProducto;
+
+    private JMenuItem menuItemCrearCarrito;
+
     private JDesktopPane jDesktopPane;
 
-    public PrincipalView() {
+    public MenuPrincipalView() {
         jDesktopPane = new JDesktopPane();
         menuBar = new JMenuBar();
+
         menuProducto = new JMenu("Producto");
+        menuCarrito = new JMenu("Carrito");
+
         menuItemCrearProducto = new JMenuItem("Crear Producto");
         menuItemEliminarProducto = new JMenuItem("Eliminar Producto");
         menuItemActualizarProducto = new JMenuItem("Actualizar Producto");
         menuItemBuscarProducto = new JMenuItem("Buscar Producto");
 
+        menuItemCrearCarrito = new JMenuItem("Crear Carrito");
+
         menuBar.add(menuProducto);
+        menuBar.add(menuCarrito);
+
         menuProducto.add(menuItemCrearProducto);
         menuProducto.add(menuItemEliminarProducto);
         menuProducto.add(menuItemActualizarProducto);
         menuProducto.add(menuItemBuscarProducto);
+
+        menuCarrito.add(menuItemCrearCarrito);
 
         setJMenuBar(menuBar);
         setContentPane(jDesktopPane);
@@ -68,6 +80,30 @@ public class PrincipalView extends JFrame {
 
     public void setMenuItemBuscarProducto(JMenuItem menuItemBuscarProducto) {
         this.menuItemBuscarProducto = menuItemBuscarProducto;
+    }
+
+    public JMenu getMenuProducto() {
+        return menuProducto;
+    }
+
+    public void setMenuProducto(JMenu menuProducto) {
+        this.menuProducto = menuProducto;
+    }
+
+    public JMenu getMenuCarrito() {
+        return menuCarrito;
+    }
+
+    public void setMenuCarrito(JMenu menuCarrito) {
+        this.menuCarrito = menuCarrito;
+    }
+
+    public JMenuItem getMenuItemCrearCarrito() {
+        return menuItemCrearCarrito;
+    }
+
+    public void setMenuItemCrearCarrito(JMenuItem menuItemCrearCarrito) {
+        this.menuItemCrearCarrito = menuItemCrearCarrito;
     }
 
     public JDesktopPane getjDesktopPane() {

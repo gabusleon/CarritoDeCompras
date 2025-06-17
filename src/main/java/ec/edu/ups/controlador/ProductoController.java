@@ -2,6 +2,7 @@ package ec.edu.ups.controlador;
 
 import ec.edu.ups.dao.ProductoDAO;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.vista.CarritoAnadirView;
 import ec.edu.ups.vista.ProductoAnadirView;
 import ec.edu.ups.vista.ProductoListaView;
 
@@ -11,42 +12,32 @@ import java.util.List;
 
 public class ProductoController {
 
-    private ProductoAnadirView productoAnadirView;
-    private ProductoListaView productoListaView;
+    private final ProductoAnadirView productoAnadirView;
+    private final ProductoListaView productoListaView;
+    private final CarritoAnadirView carritoAnadirView;
+
     private final ProductoDAO productoDAO;
 
-    public ProductoController(ProductoDAO productoDAO) {
+    public ProductoController(ProductoDAO productoDAO,
+                              ProductoAnadirView productoAnadirView,
+                              ProductoListaView productoListaView,
+                              CarritoAnadirView carritoAnadirView) {
+
         this.productoDAO = productoDAO;
-    }
-
-    public ProductoAnadirView getProductoAnadirView() {
-        return productoAnadirView;
-    }
-
-    public void setProductoAnadirView(ProductoAnadirView productoAnadirView) {
         this.productoAnadirView = productoAnadirView;
-        this.configurarAnadirEventos();
-    }
-
-    public ProductoListaView getProductoListaView() {
-        return productoListaView;
-    }
-
-    public void setProductoListaView(ProductoListaView productoListaView) {
         this.productoListaView = productoListaView;
-        this.configurarListaEventos();
+        this.carritoAnadirView = carritoAnadirView;
+        this.configurarEventosEnVistas();
     }
 
-    private void configurarAnadirEventos() {
+    private void configurarEventosEnVistas() {
         productoAnadirView.getBtnAceptar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 guardarProducto();
             }
         });
-    }
 
-    private void configurarListaEventos() {
         productoListaView.getBtnBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +49,13 @@ public class ProductoController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 listarProductos();
+            }
+        });
+
+        carritoAnadirView.getBtnBuscar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarProductoPorCodigo();
             }
         });
     }
@@ -83,5 +81,19 @@ public class ProductoController {
     private void listarProductos() {
         List<Producto> productos = productoDAO.listarTodos();
         productoListaView.cargarDatos(productos);
+    }
+
+    private void buscarProductoPorCodigo() {
+        int codigo = Integer.parseInt(carritoAnadirView.getTxtCodigo().getText());
+        Producto producto = productoDAO.buscarPorCodigo(codigo);
+        if (producto == null) {
+            carritoAnadirView.mostrarMensaje("No se encontro el producto");
+            carritoAnadirView.getTxtNombre().setText("");
+            carritoAnadirView.getTxtPrecio().setText("");
+        } else {
+            carritoAnadirView.getTxtNombre().setText(producto.getNombre());
+            carritoAnadirView.getTxtPrecio().setText(String.valueOf(producto.getPrecio()));
+        }
+
     }
 }

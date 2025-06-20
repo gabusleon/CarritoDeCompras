@@ -113,4 +113,8 @@ public class MenuPrincipalView extends JFrame {
     public void setjDesktopPane(JDesktopPane jDesktopPane) {
         this.jDesktopPane = jDesktopPane;
     }
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
 }

@@ -9,6 +9,7 @@ import ec.edu.ups.dao.UsuarioDAO;
 import ec.edu.ups.dao.impl.CarritoDAOMemoria;
 import ec.edu.ups.dao.impl.ProductoDAOMemoria;
 import ec.edu.ups.dao.impl.UsuarioDAOMemoria;
+import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Usuario;
 import ec.edu.ups.vista.*;
 
@@ -51,6 +52,9 @@ public class Main {
                             CarritoController carritoController = new CarritoController(carritoDAO, productoDAO, carritoAnadirView);
 
                             principalView.mostrarMensaje("Bienvenido: " + usuarioAuntenticado.getUsername());
+                            if (usuarioAuntenticado.getRol().equals(Rol.USUARIO)) {
+                                principalView.deshabilitarMenusAdministrador();
+                            }
 
                             principalView.getMenuItemCrearProducto().addActionListener(new ActionListener() {
                                 @Override

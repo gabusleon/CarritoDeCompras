@@ -99,6 +99,13 @@ public class Main {
                                     principalView.cambiarIdioma("en", "US");
                                 }
                             });
+
+                            principalView.getMenuItemIdiomaFrances().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    principalView.cambiarIdioma("fr", "FR");
+                                }
+                            });
                         }
                     }
                 });

@@ -24,6 +24,7 @@ public class MenuPrincipalView extends JFrame {
 
     private JMenuItem menuItemIdiomaEspanol;
     private JMenuItem menuItemIdiomaIngles;
+    private JMenuItem menuItemIdiomaFrances;
 
     private JMenuItem menuItemSalir;
     private JMenuItem menuItemCerrarSesion;
@@ -72,6 +73,10 @@ public class MenuPrincipalView extends JFrame {
         return menuItemIdiomaIngles;
     }
 
+    public JMenuItem getMenuItemIdiomaFrances() {
+        return menuItemIdiomaFrances;
+    }
+
     public JMenuItem getMenuItemSalir() {
         return menuItemSalir;
     }
@@ -98,6 +103,7 @@ public class MenuPrincipalView extends JFrame {
 
         menuItemIdiomaEspanol = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.idioma.es"));
         menuItemIdiomaIngles = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.idioma.en"));
+        menuItemIdiomaFrances = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.idioma.fr"));
 
         menuItemSalir = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.salir.salir"));
         menuItemCerrarSesion = new JMenuItem(mensajeInternacionalizacionHandler.get("menu.salir.cerrar"));
@@ -116,6 +122,7 @@ public class MenuPrincipalView extends JFrame {
 
         menuIdioma.add(menuItemIdiomaEspanol);
         menuIdioma.add(menuItemIdiomaIngles);
+        menuIdioma.add(menuItemIdiomaFrances);
 
         menuSalir.add(menuItemSalir);
         menuSalir.add(menuItemCerrarSesion);
@@ -155,6 +162,7 @@ public class MenuPrincipalView extends JFrame {
 
         menuItemIdiomaEspanol.setText(mensajeInternacionalizacionHandler.get("menu.idioma.es"));
         menuItemIdiomaIngles.setText(mensajeInternacionalizacionHandler.get("menu.idioma.en"));
+        menuItemIdiomaFrances.setText(mensajeInternacionalizacionHandler.get("menu.idioma.fr"));
 
         menuItemSalir.setText(mensajeInternacionalizacionHandler.get("menu.salir.salir"));
         menuItemCerrarSesion.setText(mensajeInternacionalizacionHandler.get("menu.salir.cerrar"));

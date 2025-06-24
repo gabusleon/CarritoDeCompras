@@ -85,6 +85,20 @@ public class Main {
                                     }
                                 }
                             });
+
+                            principalView.getMenuItemIdiomaEspanol().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    principalView.cambiarIdioma("es", "EC");
+                                }
+                            });
+
+                            principalView.getMenuItemIdiomaIngles().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    principalView.cambiarIdioma("en", "US");
+                                }
+                            });
                         }
                     }
                 });

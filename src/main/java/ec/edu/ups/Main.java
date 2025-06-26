@@ -11,6 +11,7 @@ import ec.edu.ups.dao.impl.ProductoDAOMemoria;
 import ec.edu.ups.dao.impl.UsuarioDAOMemoria;
 import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.modelo.Usuario;
+import ec.edu.ups.util.MensajeInternacionalizacionHandler;
 import ec.edu.ups.vista.*;
 
 import java.awt.event.ActionEvent;
@@ -36,16 +37,19 @@ public class Main {
 
                         Usuario usuarioAuntenticado = usuarioController.getUsuarioAutenticado();
                         if (usuarioAuntenticado != null) {
+
+                            //instanciamos MensajeHandler (Singleton)
+                            MensajeInternacionalizacionHandler mensajeInternacionalizacionHandler = new MensajeInternacionalizacionHandler("es", "EC");
+
                             //instanciamos DAO (Singleton)
                             ProductoDAO productoDAO = new ProductoDAOMemoria();
                             CarritoDAO carritoDAO = new CarritoDAOMemoria();
 
                             //instancio Vistas
-                            MenuPrincipalView principalView = new MenuPrincipalView();
+                            MenuPrincipalView principalView = new MenuPrincipalView(mensajeInternacionalizacionHandler);
                             ProductoAnadirView productoAnadirView = new ProductoAnadirView();
                             ProductoListaView productoListaView = new ProductoListaView();
-                            CarritoAnadirView carritoAnadirView = new CarritoAnadirView();
-
+                            CarritoAnadirView carritoAnadirView = new CarritoAnadirView(mensajeInternacionalizacionHandler);
 
                             //instanciamos Controladores
                             ProductoController productoController = new ProductoController(productoDAO, productoAnadirView, productoListaView, carritoAnadirView);

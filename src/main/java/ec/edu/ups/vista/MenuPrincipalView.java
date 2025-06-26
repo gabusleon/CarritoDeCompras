@@ -31,8 +31,8 @@ public class MenuPrincipalView extends JFrame {
 
     private JDesktopPane jDesktopPane;
 
-    public MenuPrincipalView() {
-        mensajeInternacionalizacionHandler = new MensajeInternacionalizacionHandler("es", "EC");
+    public MenuPrincipalView(MensajeInternacionalizacionHandler mensajeInternacionalizacionHandler) {
+        this.mensajeInternacionalizacionHandler = mensajeInternacionalizacionHandler;
         initComponents();
     }
 
@@ -83,6 +83,10 @@ public class MenuPrincipalView extends JFrame {
 
     public JMenuItem getMenuItemCerrarSesion() {
         return menuItemCerrarSesion;
+    }
+
+    public MensajeInternacionalizacionHandler getMensajeInternacionalizacionHandler() {
+        return mensajeInternacionalizacionHandler;
     }
 
     private void initComponents() {

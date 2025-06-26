@@ -5,12 +5,14 @@ import ec.edu.ups.dao.ProductoDAO;
 import ec.edu.ups.modelo.Carrito;
 import ec.edu.ups.modelo.ItemCarrito;
 import ec.edu.ups.modelo.Producto;
+import ec.edu.ups.util.FormateadorUtils;
 import ec.edu.ups.vista.CarritoAnadirView;
 
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Locale;
 
 public class CarritoController {
 
@@ -64,6 +66,7 @@ public class CarritoController {
     }
 
     private void cargarProductos(){
+        Locale locale = carritoAnadirView.getMensajeInternacionalizacion().getLocale();
 
         List<ItemCarrito> items = carrito.obtenerItems();
         DefaultTableModel modelo = (DefaultTableModel) carritoAnadirView.getTblProductos().getModel();
@@ -73,14 +76,18 @@ public class CarritoController {
                                         item.getProducto().getNombre(),
                                         item.getProducto().getPrecio(),
                                         item.getCantidad(),
-                                        item.getProducto().getPrecio() * item.getCantidad() });
+                    FormateadorUtils.formatearMoneda(item.getProducto().getPrecio() * item.getCantidad(), locale)
+            });
         }
     }
 
     private void mostrarTotales(){
-        String subtotal = String.valueOf(carrito.calcularSubtotal());
+        Locale locale = carritoAnadirView.getMensajeInternacionalizacion().getLocale();
+        String subtotal = FormateadorUtils.formatearMoneda(carrito.calcularSubtotal(), locale);
         String iva = String.valueOf(carrito.calcularIVA());
         String total = String.valueOf(carrito.calcularTotal());
+
+        System.out.println(FormateadorUtils.formatearFecha(carrito.getFechaCreacion().getTime(), locale));
 
         carritoAnadirView.getTxtSubtotal().setText(subtotal);
         carritoAnadirView.getTxtIva().setText(iva);

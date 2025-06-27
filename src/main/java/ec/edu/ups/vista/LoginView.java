@@ -1,6 +1,7 @@
 package ec.edu.ups.vista;
 
 import javax.swing.*;
+import java.net.URL;
 
 public class LoginView extends JFrame {
     private JPanel panelPrincipal;
@@ -16,6 +17,23 @@ public class LoginView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);
+
+        URL loginURL = LoginView.class.getClassLoader().getResource("imagenes/login.png");
+        if (loginURL != null) {
+            ImageIcon iconoBtnIniciarSesion = new ImageIcon(loginURL);
+            btnIniciarSesion.setIcon(iconoBtnIniciarSesion);
+        } else {
+            System.err.println("Error: No se ha cargado el icono de Login");
+        }
+
+        URL registrarseURL = LoginView.class.getClassLoader().getResource("imagenes/registrarse.png");
+        if (registrarseURL != null) {
+            ImageIcon iconoBtnRegistrarse = new ImageIcon(registrarseURL);
+            btnRegistrarse.setIcon(iconoBtnRegistrarse);
+        } else {
+            System.err.println("Error: No se ha cargado el icono de Registrarse");
+        }
+
     }
 
     public JPanel getPanelPrincipal() {

@@ -29,7 +29,7 @@ public class MenuPrincipalView extends JFrame {
     private JMenuItem menuItemSalir;
     private JMenuItem menuItemCerrarSesion;
 
-    private JDesktopPane jDesktopPane;
+    private MiJDesktopPane jDesktopPane;
 
     public MenuPrincipalView(MensajeInternacionalizacionHandler mensajeInternacionalizacionHandler) {
         this.mensajeInternacionalizacionHandler = mensajeInternacionalizacionHandler;
@@ -90,7 +90,7 @@ public class MenuPrincipalView extends JFrame {
     }
 
     private void initComponents() {
-        jDesktopPane = new JDesktopPane();
+        jDesktopPane = new MiJDesktopPane();
         menuBar = new JMenuBar();
 
         menuProducto = new JMenu(mensajeInternacionalizacionHandler.get("menu.producto"));
